@@ -56,12 +56,17 @@ public class PlayerShip : MonoBehaviour
         CurrentSpeed.x = CurrentSpeed.x * (1.0f - 1.0f/SlowDown);
         CurrentSpeed.y = CurrentSpeed.y * (1.0f - 1.0f/SlowDown);
 
+        //was here
+    }//Update
+
+    void FixedUpdate()
+    {
         Vector2 newPosition = new Vector2(
             ShipRb2d.position.x + CurrentSpeed.x,
             ShipRb2d.position.y + CurrentSpeed.y
         );
-        ShipRb2d.MovePosition( newPosition );
-    }//Update
+        ShipRb2d.MovePosition(newPosition); //don't need deltaTime - provided by engine
+    }//FixedUpdate
 
 }//class
 
