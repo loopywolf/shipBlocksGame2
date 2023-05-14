@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+//from https://mrlovelies.medium.com/unity-dev-stars-ce18d43dd55# by Alex Somerville - Made some modifications on my own =) 
+
 public class StarField2 : MonoBehaviour
 {
 	public int MaxStars = 100;

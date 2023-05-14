@@ -15,6 +15,7 @@ MILESTONES
 		Set speed (0 to 3)
 		(v)BUG: the pivot point is not the center
 		little man rotates independently of ship (to always face up)
+		BUG: starfield is gross
 	Your little man goes back and forth between your 2 components
 	Arrival is noted
 	Planets are visible
@@ -27,3 +28,6 @@ MILESTONES
 	Your missions at this level are ...
 4. Embellishments
 	Main level scrolls with you, but starfield scrolls independently, and there is another level of objects in system that also scroll independently, these are unreachable (sun, gas giants)
+
+MISSION 1:
+You've gotten your hands on a very basic rocketship.. A cockpit stuck on a rocket motor.  She isn't very maneuverable or fast, but it's just enough to get from A to B.  Your contract is to deliver cargo to planet-4 of this system.  Your equipment is crude, so just follow a heading of 381.  Good Luck!
