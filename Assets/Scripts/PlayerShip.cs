@@ -11,6 +11,8 @@ public class PlayerShip : MonoBehaviour
     public float MaxSpeed;
     Rigidbody2D ShipRb2d;
     Vector3 CurrentSpeed;
+    private GameManager gm;
+    public string lookingFor = "";
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class PlayerShip : MonoBehaviour
         //shipTransform = GetComponent<Transform>();
         ShipRb2d = GetComponent<Rigidbody2D>();
         CurrentSpeed = new Vector2(0f, 0f);
+        gm = Camera.main.GetComponent<SimpleCamera>().GetGameManager();
     }//Start
 
     // Update is called once per frame
@@ -25,8 +28,6 @@ public class PlayerShip : MonoBehaviour
     {
         float dx = Input.GetAxisRaw("Horizontal");
         float dy = Input.GetAxisRaw("Vertical");
-
-    
 
         //Ship controls
         if (dx != 0)
@@ -67,6 +68,18 @@ public class PlayerShip : MonoBehaviour
         );
         ShipRb2d.MovePosition(newPosition); //don't need deltaTime - provided by engine
     }//FixedUpdate
+
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Debug.Log("our ship hit " + hitInfo);
+        //Debug.Log("its name is " + hitInfo.name); //planetVerda
+        //Debug.Log("we are looking for " + lookingFor);
+        if (hitInfo.name == lookingFor)
+        {
+            Debug.Log("You're done!");
+            gm.CompleteMission();
+        }
+    }//OnTrigger
 
 }//class
 

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class SimpleCamera : MonoBehaviour
 {
@@ -12,7 +14,14 @@ public class SimpleCamera : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+        Assert.IsNotNull(mainCamera);
         gm = mainGameManager.GetComponent<GameManager>();
+        Assert.IsNotNull(gm);
+
+        //Debug.Log("Camera Start "+gm);
+
+        gm.SetupMission();
+        gm.DisplayMissionUi();
     }
 
     // Awake is called at the start
@@ -20,8 +29,14 @@ public class SimpleCamera : MonoBehaviour
     {
         rotation = transform.rotation;
 
-        if(gm!=null) gm.DisplayMissionUi();
+        //Debug.Log("Camera Awake");
     }//awake
+
+    internal GameManager GetGameManager()
+    {
+        //throw new NotImplementedException();
+        return gm;
+    }
 
     void LateUpdate()
     {

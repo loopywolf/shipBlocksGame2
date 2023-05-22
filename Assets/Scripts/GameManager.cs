@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,33 +11,43 @@ public class GameManager : MonoBehaviour
     int currentMission = 0;
     [SerializeField] GameObject mainUiCanvasObject;
     [SerializeField] GameObject missionTextObject;
+    [SerializeField] GameObject missionPanelObject;
     private TextMeshProUGUI tmpugText;
+    [SerializeField] GameObject missionCompleteObject;
+    //mission control
+    [SerializeField] GameObject goMyShip;
+    private PlayerShip myShip;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        tmpugText = missionTextObject.GetComponent<TextMeshProUGUI>();
+        //Debug.Log("tmp " + tmp);
+        //tmp.SetText( MissionText() ); //this works
+        Assert.IsNotNull(tmpugText);
+
+        myShip = goMyShip.GetComponent<PlayerShip>();
+        Assert.IsNotNull(myShip);
+
+        missionPanelObject.SetActive(false);
+        missionCompleteObject.SetActive(false);
+    }
+
     void Start()
     {
         //Canvas c = mainUiCanvas.GetComponent<Canvas>();
         //if (c == null) Debug.Log("Not Found!");
-
-        tmpugText = missionTextObject.GetComponent<TextMeshProUGUI>();
-        //Debug.Log("tmp " + tmp);
-        //tmp.SetText( MissionText() ); //this works
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void DisplayMissionUi()
     {
         int i = currentMission + 1;
         tmpugText.SetText("Mission "+i+": "+MissionText() );
+        missionPanelObject.SetActive(true);
     }//F
 
     public string MissionText()
     {
-        switch( currentMission)
+        switch(currentMission)
         {
             case 0: return "You've gotten your hands on a very basic rocketship.. A cockpit stuck on a rocket motor.  She isn't very maneuverable or fast, but it's just enough to get from A to B. " +
                             "Your contract is to deliver cargo to planet 4 of this system.  Your equipment is crude, so just follow a heading of 381.  Good Luck!";
@@ -45,7 +57,30 @@ public class GameManager : MonoBehaviour
 
     public void hideMissionText()
     {
-        mainUiCanvasObject.SetActive(false);
+        //mainUiCanvasObject.SetActive(false);
+        missionPanelObject.SetActive(false);
     }//F
 
+    internal void SetupMission()
+    {
+        switch(currentMission){
+            case 0: //mission1: fly ship to planetVerda
+                myShip.lookingFor = "planetVerda";
+                //Debug.Log("Ship looking for = " + myShip.lookingFor);
+                break;
+        }
+        //throw new NotImplementedException();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    internal void CompleteMission()
+    {
+        missionCompleteObject.SetActive(true);
+        //throw new NotImplementedException();
+    }
 }//class
