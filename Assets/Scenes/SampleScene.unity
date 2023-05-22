@@ -1537,7 +1537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OK
+  m_text: GO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13891,6 +13891,7 @@ MonoBehaviour:
   firePoint: {fileID: 858830619}
   BulletPrefab: {fileID: 6762747487148118489, guid: 1665cb4c0cab3b549bde5bc667cb95b7,
     type: 3}
+  eventSystem: {fileID: 2077653791}
 --- !u!1 &1384296225
 GameObject:
   m_ObjectHideFlags: 0
@@ -16456,7 +16457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.72156864, g: 0.72156864, b: 0.74509805, a: 0.8980392}
+  m_Color: {r: 0.5368903, g: 0.676494, b: 0.8962264, a: 0.8980392}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
