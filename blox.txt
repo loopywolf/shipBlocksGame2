@@ -1,0 +1,14 @@
+           TOTAL STACK
+Cockpit - basic control unit of a pilot, provides minimal life support(1), power, fuel
+Engine - propulsion - Stack: Max Speed
+Thruster
+Fuel
+Reactor - power (needed for other blocks) - stack: total:
+Turret - automatic defense
+H-CargoHold - cargo storage - stack: max size total: max cargo total
+Q-CrewQ - # crew, life support included, stack: recovery? total: crew
+MiningTool 
+Sensor
+
+(a) is for art
+(v) is for done

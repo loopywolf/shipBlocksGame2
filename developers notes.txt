@@ -5,7 +5,7 @@ MILESTONES
 1. (v)BEGUN
 2. COMPLETE PLAYABLE CORE
 	The first mission(s) will be you in your little rocketship flying short-range errands and deliveries.  
-		You will see planets, but nothing about them.
+		(v)You will see planets, but nothing about them.
 		You will avoid hazards, knowing nothing about them.
 		If you die, you are always put back to this mini rocketship
 		Mission1: You are asked to fly to a planet X, and are given the course, nothing more.
@@ -15,11 +15,11 @@ MILESTONES
 		Set speed (0 to 3)
 		(v)BUG: the pivot point is not the center
 		little man rotates independently of ship (to always face up)
-		BUG: starfield is gross
+		(v)BUG: starfield is gross
 	Your little man goes back and forth between your 2 components
-	Arrival is noted
-	Planets are visible
-	You have a mission kick off
+	(v)Arrival is noted
+	(v)Planets are visible
+	(v)You have a mission kick off
 3. NEXT STEP
 	You are given a more involved cargo ship
 	Crew wander the ship, AI directing them to give components attention
@@ -29,5 +29,30 @@ MILESTONES
 4. Embellishments
 	Main level scrolls with you, but starfield scrolls independently, and there is another level of objects in system that also scroll independently, these are unreachable (sun, gas giants)
 
-MISSION 1:
-You've gotten your hands on a very basic rocketship.. A cockpit stuck on a rocket motor.  She isn't very maneuverable or fast, but it's just enough to get from A to B.  Your contract is to deliver cargo to planet-4 of this system.  Your equipment is crude, so just follow a heading of 381.  Good Luck!
+EC
+MISSION 1: Rocket Seat
+Spec: travel from START to 
+"You've gotten your hands on a very basic rocketship.. A cockpit stuck on a rocket motor.  She isn't very maneuverable or fast, but it's just enough to get from A to B.  Your contract is to deliver cargo to planet-4 of this system.  Your equipment is crude, so just follow a heading of 381.  Good Luck!"
+
+C
+EHM
+RHH
+MISSION 2: Mining Ship
+You are given a basic mining ship
+Introduces the boxes: Weapons and Cargo
+
+ F H
+ERQHC
+ T H
+MISSION 3:
+You are given a freighter
+Introduces the boxes: Fuel, Thruster, Q-Crew
+
+FFFT
+   EEERCSS
+FFFT
+MISSION 4:
+You are given a scout
+Introduces the boxes: multiple boxes increase ability, sensors
+MISSION 4: Scout
+You are given a cout

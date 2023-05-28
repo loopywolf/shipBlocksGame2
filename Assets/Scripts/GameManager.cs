@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         switch(currentMission){
             case 0: //mission1: fly ship to planetVerda
                 myShip.lookingFor = "planetVerda";
+                myShip.missionCompleteAt = "STARBASE";
                 //Debug.Log("Ship looking for = " + myShip.lookingFor);
                 break;
         }
@@ -81,6 +82,12 @@ public class GameManager : MonoBehaviour
     internal void CompleteMission()
     {
         missionCompleteObject.SetActive(true);
+        //throw new NotImplementedException();
+    }
+
+    internal void NextMission()
+    {
+        //Selects and shows the next mission - different than start?
         //throw new NotImplementedException();
     }
 }//class

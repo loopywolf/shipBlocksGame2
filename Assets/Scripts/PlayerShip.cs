@@ -13,6 +13,7 @@ public class PlayerShip : MonoBehaviour
     Vector3 CurrentSpeed;
     private GameManager gm;
     public string lookingFor = "";
+    internal string missionCompleteAt = "";
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +79,11 @@ public class PlayerShip : MonoBehaviour
         {
             Debug.Log("You're done!");
             gm.CompleteMission();
+        } else
+        if(hitInfo.name == missionCompleteAt)
+        {
+            Debug.Log("Next mission, please!");
+            gm.NextMission();
         }
     }//OnTrigger
 
