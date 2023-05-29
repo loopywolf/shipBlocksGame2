@@ -78,9 +78,10 @@ public class PlayerShip : MonoBehaviour
         if (hitInfo.name == lookingFor)
         {
             Debug.Log("You're done!");
+            lookingFor = "";    //blank it out
             gm.CompleteMission();
         } else
-        if(hitInfo.name == missionCompleteAt)
+        if (hitInfo.name == missionCompleteAt && lookingFor=="")
         {
             Debug.Log("Next mission, please!");
             gm.NextMission();

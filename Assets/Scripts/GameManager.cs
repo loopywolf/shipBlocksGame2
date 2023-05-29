@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     //mission control
     [SerializeField] GameObject goMyShip;
     private PlayerShip myShip;
+    //NavigationAid
+    [SerializeField] GameObject NavigationUiObject;
+    //internal Transform navigationTarget = null;
 
     private void Awake()
     {
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         //Canvas c = mainUiCanvas.GetComponent<Canvas>();
         //if (c == null) Debug.Log("Not Found!");
+        //NavigationUiObject.GetComponent<NavigationUI>().setPlayerShip(myShip);
     }
 
     public void DisplayMissionUi()
@@ -59,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         //mainUiCanvasObject.SetActive(false);
         missionPanelObject.SetActive(false);
+        NavigationUiObject.SetActive(true);
     }//F
 
     internal void SetupMission()
@@ -69,6 +74,13 @@ public class GameManager : MonoBehaviour
                 myShip.missionCompleteAt = "STARBASE";
                 //Debug.Log("Ship looking for = " + myShip.lookingFor);
                 break;
+        }
+
+        if (myShip.lookingFor != "")
+        {
+            Transform nav = GameObject.Find(myShip.lookingFor).transform;
+            NavigationUiObject.GetComponent<NavigationUI>().SetTarget(nav);
+            Debug.Log("navitarget " + nav);
         }
         //throw new NotImplementedException();
     }
