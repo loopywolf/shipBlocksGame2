@@ -20,13 +20,15 @@ public class NavigationUI : MonoBehaviour
         if (target == null) return; //can't do nothing
 
         //find angle to target
-        //float course = Mathf.Atan2(target.position.y - playerShipPosition.y,
-        //  target.position.x - playerShipPosition.x) * Mathf.Rad2Deg;
-        Debug.Log("player ship x=" + playerShip.transform.position.x + " y=" + playerShip.transform.position.y + " Target x=" + target.position.x + " y=" + target.position.y);
-        float course = Vector3.Angle(playerShip.transform.position, target.position);
+        float course = Mathf.Atan2(
+            target.position.y - playerShip.transform.position.y,
+            target.position.x - playerShip.transform.position.x) * Mathf.Rad2Deg; //YUP!
+        //Debug.Log("player ship x=" + playerShip.transform.position.x + " y=" + playerShip.transform.position.y + " Target x=" + target.position.x + " y=" + target.position.y);
+        //float course = 90f + Vector3.Angle(playerShip.transform.position, target.position);
+        //float course = 0f;
         //transform.Rotate(0, 0, course);
         transform.rotation = Quaternion.Euler(0f, 0f, course);
-        Debug.Log("course = " + course);
+        //Debug.Log("course = " + course);
     }
 
     internal void SetTarget(Transform nav)

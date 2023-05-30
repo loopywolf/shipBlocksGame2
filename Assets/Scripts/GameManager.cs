@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     //NavigationAid
     [SerializeField] GameObject NavigationUiObject;
     //internal Transform navigationTarget = null;
+    private WinkUI winkUI;
 
     private void Awake()
     {
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
 
         myShip = goMyShip.GetComponent<PlayerShip>();
         Assert.IsNotNull(myShip);
+
+        winkUI = NavigationUiObject.GetComponent<WinkUI>();
+        Assert.IsNotNull(winkUI);
 
         missionPanelObject.SetActive(false);
         missionCompleteObject.SetActive(false);
@@ -76,12 +80,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        if (myShip.lookingFor != "")
-        {
-            Transform nav = GameObject.Find(myShip.lookingFor).transform;
-            NavigationUiObject.GetComponent<NavigationUI>().SetTarget(nav);
-            Debug.Log("navitarget " + nav);
-        }
+        setNavTarget(myShip.lookingFor);
         //throw new NotImplementedException();
     }
 
@@ -93,7 +92,9 @@ public class GameManager : MonoBehaviour
 
     internal void CompleteMission()
     {
-        missionCompleteObject.SetActive(true);
+        missionCompleteObject.SetActive(true);  //shows "Mission Complete"
+        setNavTarget(myShip.missionCompleteAt);
+        winkUI.WinkAgain();
         //throw new NotImplementedException();
     }
 
@@ -102,4 +103,14 @@ public class GameManager : MonoBehaviour
         //Selects and shows the next mission - different than start?
         //throw new NotImplementedException();
     }
+
+    private void setNavTarget(String t)
+    {
+        if (t == "") return;
+
+        Transform nav = GameObject.Find(t).transform;
+        NavigationUiObject.GetComponent<NavigationUI>().SetTarget(nav);
+        Debug.Log("navitarget " + nav);
+    }//F
+
 }//class
