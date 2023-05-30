@@ -83,7 +83,7 @@ public class PlayerShip : MonoBehaviour
         } else
         if (hitInfo.name == missionCompleteAt && lookingFor=="")
         {
-            Debug.Log("Next mission, please!");
+//            Debug.Log("Next mission, please!");
             gm.NextMission();
         }
     }//OnTrigger
