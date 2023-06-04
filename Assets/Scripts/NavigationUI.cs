@@ -11,7 +11,7 @@ public class NavigationUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.gameObject.SetActive(false);   //starts invisible
+        //this.gameObject.SetActive(false);   //starts invisible
     }
 
     // Update is called once per frame
@@ -35,6 +35,7 @@ public class NavigationUI : MonoBehaviour
     {
         target = nav;
         //throw new NotImplementedException();
+        //this this.gameObject.SetActive(true);
     }
 
 }//class

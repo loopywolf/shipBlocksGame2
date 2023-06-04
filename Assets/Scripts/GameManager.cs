@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject NavigationUiObject;
     //internal Transform navigationTarget = null;
     private WinkUI winkUI;
+    [SerializeField] GameObject SensorUiObject;
 
     private void Awake()
     {
@@ -34,9 +35,13 @@ public class GameManager : MonoBehaviour
 
         winkUI = NavigationUiObject.GetComponent<WinkUI>();
         Assert.IsNotNull(winkUI);
+        NavigationUiObject.SetActive(false);
 
         missionPanelObject.SetActive(false);
         missionCompleteObject.SetActive(false);
+
+        //turn sensors ON //debug
+        SensorUiObject.SetActive(false);
     }
 
     void Start()
@@ -44,6 +49,9 @@ public class GameManager : MonoBehaviour
         //Canvas c = mainUiCanvas.GetComponent<Canvas>();
         //if (c == null) Debug.Log("Not Found!");
         //NavigationUiObject.GetComponent<NavigationUI>().setPlayerShip(myShip);
+
+        //debug
+        CheckItemSensors();
     }
 
     public void DisplayMissionUi()
@@ -126,4 +134,54 @@ public class GameManager : MonoBehaviour
         Debug.Log("navitarget " + go);
     }//F
 
+    private void CheckItemSensors()
+    {
+        //called when items are added to the scene, to see if we should have item sensors active
+        GameObject[] anyItems = GameObject.FindGameObjectsWithTag("Item");
+        if (anyItems.Length == 0) //none found 
+        {
+            //deactivate items sensors
+            SensorUiObject.SetActive(false);
+        } else {
+            //activate
+            SensorUiObject.SetActive(true);
+            //must set the UI to point to the nearest object
+            GameObject nearest = null;
+            float closest = Mathf.Infinity;
+            foreach(GameObject go in anyItems)
+            {
+                Vector3 directionToTarget = go.transform.position - myShip.transform.position;
+                float dSqrToTarget = directionToTarget.sqrMagnitude;
+                if (dSqrToTarget < closest)
+                {
+                    nearest = go;
+                    closest = dSqrToTarget;
+                }//if closer
+            }//for list
+
+            if (nearest != null)
+            {
+                Debug.Log("item go=" + nearest);
+                //set the three sensor objects to the new target
+                foreach (Transform child in SensorUiObject.transform)
+                {
+                    Debug.Log("activating " + child.gameObject);
+                    //child is your child transform
+                    //child.gameObject.SetActive(true);
+                    NavigationUI nu = child.GetComponent<NavigationUI>();
+                    nu.SetTarget(nearest.transform);
+                    //nu.gameObject.SetActive(true);
+                    //SensorUiObject.SetActive(true);
+                }//for
+            }//if
+
+        }//if any items
+        //throw new NotImplementedException();
+    }//F
+
+    private void SetItemDetector(GameObject closet)
+    {
+
+        //throw new NotImplementedException();
+    }
 }//class

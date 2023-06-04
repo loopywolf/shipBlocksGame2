@@ -10,6 +10,7 @@ public class WinkUI : MonoBehaviour
     [SerializeField] int HowManyWinks;
     private float winkCounter = 0f;
     private int winksSoFar;
+    [SerializeField] float WinkFade;
 
     // Start is called before the first frame update
     void Start()
@@ -28,17 +29,17 @@ public class WinkUI : MonoBehaviour
 
         winkCounter += Time.deltaTime;
         //Debug.Log("winkCounter="+winkCounter);
-        if (winkCounter>WinkDelay)
+        if (winkCounter>WinkDelay || true)
         {
-            winkCounter = 0f;
-            //bool currentState = gameObject.activeSelf;
-            float currentAlpha = cr.GetAlpha();
-            //gameObject.SetActive(!currentState);   //switches it on or off
-            cr.SetAlpha(1.0f - currentAlpha);   //switches on or off
-            if (currentAlpha == 0f) winksSoFar++; // HowManyWinks--;
-            //Debug.Log("winksSoFar=" + winksSoFar);
-            //Debug.Log("OnOrOff=" + currentState);
-            //Debug.Log("OnOrOff=" + currentAlpha);
+            //winkCounter = 0f;
+                //bool currentState = gameObject.activeSelf;
+                //gameObject.SetActive(!currentState);   //switches it on or off
+
+            float currentAlpha = Mathf.Sin((winkCounter + WinkDelay) *WinkFade);
+            //float currentAlpha = cr.GetAlpha();
+            cr.SetAlpha(currentAlpha);
+            //cr.SetAlpha(1.0f - currentAlpha);   //switches on or off
+            //if (currentAlpha == 0f) winksSoFar++; // HowManyWinks--;
         }
     }//Update
 
