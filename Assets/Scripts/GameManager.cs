@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     //NavigationAid
     [SerializeField] GameObject NavigationUiObject;
     //internal Transform navigationTarget = null;
-    private WinkUI winkUI;
+    private WinkUI navWinkUI;
     [SerializeField] GameObject SensorUiObject;
 
     private void Awake()
@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
         myShip = goMyShip.GetComponent<PlayerShip>();
         Assert.IsNotNull(myShip);
 
-        winkUI = NavigationUiObject.GetComponent<WinkUI>();
-        Assert.IsNotNull(winkUI);
+        navWinkUI = NavigationUiObject.GetComponent<WinkUI>();
+        Assert.IsNotNull(navWinkUI);
         NavigationUiObject.SetActive(false);
 
         missionPanelObject.SetActive(false);
@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
             case 1: //mission 2: mining ship
                 myShip.lookingFor = "asteroid0";
                 myShip.missionCompleteAt = "STARBASE";
+                //move player to mining ship
                 break;
         }
 
@@ -110,7 +111,7 @@ public class GameManager : MonoBehaviour
     {
         missionCompleteObject.SetActive(true);  //shows "Mission Complete"
         setNavTarget(myShip.missionCompleteAt);
-        winkUI.WinkAgain();
+        navWinkUI.WinkAgain();
         //throw new NotImplementedException();
     }
 
