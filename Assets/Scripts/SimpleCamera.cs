@@ -20,8 +20,8 @@ public class SimpleCamera : MonoBehaviour
 
         //Debug.Log("Camera Start "+gm);
 
-        gm.SetupMission();
-        gm.DisplayMissionUi();
+        //gm.SetupMission();
+        //gm.DisplayMissionUi();
     }
 
     // Awake is called at the start

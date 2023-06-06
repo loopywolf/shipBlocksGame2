@@ -21,7 +21,7 @@ public class PlayerShip : MonoBehaviour
         //shipTransform = GetComponent<Transform>();
         ShipRb2d = GetComponent<Rigidbody2D>();
         CurrentSpeed = new Vector2(0f, 0f);
-        gm = Camera.main.GetComponent<SimpleCamera>().GetGameManager();
+        gm = Camera.main.GetComponent<SimpleCamera>().GetGameManager(); //static const
     }//Start
 
     // Update is called once per frame

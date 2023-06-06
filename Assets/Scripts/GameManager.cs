@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
         //tmp.SetText( MissionText() ); //this works
         Assert.IsNotNull(tmpugText);
 
-        myShip = goMyShip.GetComponent<PlayerShip>();
-        Assert.IsNotNull(myShip);
+        //myShip = goMyShip.GetComponent<PlayerShip>();
+        //Assert.IsNotNull(myShip);
 
         navWinkUI = NavigationUiObject.GetComponent<WinkUI>();
         Assert.IsNotNull(navWinkUI);
@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
         //if (c == null) Debug.Log("Not Found!");
         //NavigationUiObject.GetComponent<NavigationUI>().setPlayerShip(myShip);
 
+        ResetShips();
+        EnableShip("YourShip");
+        SetupMission();
+        DisplayMissionUi();
         //debug
         CheckItemSensors();
     }
@@ -75,11 +79,13 @@ public class GameManager : MonoBehaviour
                 myShip.lookingFor = "planetVerda";
                 myShip.missionCompleteAt = "STARBASE";
                 //Debug.Log("Ship looking for = " + myShip.lookingFor);
+                EnableShip("YourShip");
                 break;
             case 1: //mission 2: mining ship
                 myShip.lookingFor = "asteroid0";
                 myShip.missionCompleteAt = "STARBASE";
-                //move player to mining ship
+
+                EnableShip("Ship2-MiningRig");
                 break;
         }
 
@@ -185,4 +191,41 @@ public class GameManager : MonoBehaviour
 
         //throw new NotImplementedException();
     }
+
+    private void ResetShips()
+    {
+        //find all ships and reset them
+        GameObject[] ships = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject go in ships)
+        {
+            PlayerShip ps = go.GetComponent<PlayerShip>();
+            ps.enabled = false;
+        }
+        //throw new NotImplementedException();
+    }
+
+    private void EnableShip(string shipName)
+    {
+        Debug.Log("enable ship=" + shipName);
+        //attack camera to ship
+        SmoothFollow sf = Camera.main.GetComponent<SmoothFollow>();
+        if (sf == null) return;
+
+        GameObject nextShip = GameObject.Find(shipName); // "Ship2-MiningRig");
+        if (nextShip == null) return;
+
+        Debug.Log("found " + nextShip);
+
+        sf.target = nextShip.transform;
+        if (myShip != null)
+        {
+            myShip.enabled = false;
+            Debug.Log("disabled " + myShip.gameObject);
+        }
+        myShip = nextShip.GetComponent<PlayerShip>();
+        myShip.enabled = true;
+        //throw new NotImplementedException();
+        Debug.Log("enabled " + myShip.gameObject);
+    }//F
+
 }//class
