@@ -10,11 +10,17 @@ public class SimpleCamera : MonoBehaviour
     public Camera mainCamera;
     [SerializeField] GameObject mainGameManager;
     private GameManager gm;
+    //zoom camera
+    [SerializeField] float zoomFactor = 1.0f;
+    [SerializeField] float zoomSpeed = 5.0f;
+    private float originalSize = 0f;
+    //private Camera thisCamera;
 
     private void Start()
     {
         mainCamera = Camera.main;
         Assert.IsNotNull(mainCamera);
+        originalSize = mainCamera.orthographicSize; //for zoom
         gm = mainGameManager.GetComponent<GameManager>();
         Assert.IsNotNull(gm);
 
@@ -37,10 +43,34 @@ public class SimpleCamera : MonoBehaviour
         //throw new NotImplementedException();
         return gm;
     }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        float targetSize = originalSize * zoomFactor;
+        if (targetSize != mainCamera.orthographicSize)
+        {
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize,targetSize, Time.deltaTime * zoomSpeed);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        { //player requests zoom
+            if (zoomFactor == 1.0f)
+                SetZoom(0.5f);
+            else
+                SetZoom(1.0f);
+        }
+    }//Update
 
     void LateUpdate()
     {
         transform.rotation = rotation;
     }//LateUpdate
+
+    //adding zoom
+    void SetZoom(float zoomFactor)
+    {
+        this.zoomFactor = zoomFactor;
+    }
 
 }//class
