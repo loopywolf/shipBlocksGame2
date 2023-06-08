@@ -7323,7 +7323,7 @@ GameObject:
   - component: {fileID: 438700453}
   - component: {fileID: 438700452}
   m_Layer: 0
-  m_Name: ThrustParticles (2)
+  m_Name: ThrustParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12474,6 +12474,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   mainGameManager: {fileID: 1688994486}
+  zoomFactor: 1
+  zoomSpeed: 5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -13207,7 +13209,7 @@ GameObject:
   - component: {fileID: 606453353}
   - component: {fileID: 606453352}
   m_Layer: 0
-  m_Name: ThrustParticles (1)
+  m_Name: ThrustParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18712,6 +18714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 667558020}
   - component: {fileID: 667558021}
+  - component: {fileID: 667558022}
   m_Layer: 0
   m_Name: ss-g2-draft_3
   m_TagString: Untagged
@@ -18785,6 +18788,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &667558022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667558019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2501f1ff0314dff4291ac01251a737fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &684599096
 GameObject:
   m_ObjectHideFlags: 0
@@ -23098,6 +23113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1362075089}
   - component: {fileID: 1362075090}
+  - component: {fileID: 1362075091}
   m_Layer: 0
   m_Name: sb-eng
   m_TagString: Untagged
@@ -23171,6 +23187,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1362075091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362075088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2501f1ff0314dff4291ac01251a737fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1366655414
 GameObject:
   m_ObjectHideFlags: 0

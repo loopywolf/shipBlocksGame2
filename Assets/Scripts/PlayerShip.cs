@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerShip : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class PlayerShip : MonoBehaviour
     private GameManager gm;
     public string lookingFor = "";
     internal string missionCompleteAt = "";
+    //private GameObject thrustParticles = null;
+    private List<BloxE> EngineBlox = new List<BloxE>();
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,21 @@ public class PlayerShip : MonoBehaviour
         ShipRb2d = GetComponent<Rigidbody2D>();
         CurrentSpeed = new Vector2(0f, 0f);
         gm = Camera.main.GetComponent<SimpleCamera>().GetGameManager(); //static const
+        //thrusters display
+        //Transform tp = gameObject.transform.Find("ThrustParticles");
+        //Assert.IsNotNull(tp);
+        //thrustParticles = tp.gameObject;
+        //Assert.IsNotNull(thrustParticles);
+        
+        //Thrusters take 2
+        foreach(Transform childTf in transform)
+        {
+            BloxE be = childTf.GetComponent<BloxE>();
+            if (be != null)
+                EngineBlox.Add(be);
+        }
+        Debug.Log(gameObject.name+ "..EngineBlox=" + EngineBlox);
+        Debug.Log(EngineBlox.Count);
     }//Start
 
     // Update is called once per frame
@@ -37,6 +56,7 @@ public class PlayerShip : MonoBehaviour
                 //shipTransform.eulerAngles.y,
                 //shipTransform.eulerAngles.z + turnSpeed * dx);
             ShipRb2d.MoveRotation(ShipRb2d.rotation - turnSpeed * dx);
+
         if (dy != 0)
         {
             /*Vector3 speed = new Vector3(
@@ -48,10 +68,17 @@ public class PlayerShip : MonoBehaviour
             //ShipRb2d.AddRelativeForce(Vector3.forward * moveSpeed * dy);
             //Debug.Log("thrusting " + ShipRb2d.transform.rotation.eulerAngles.z);
             //if( CurrentSpeed.magnitude < MaxSpeed )
-                CurrentSpeed = new Vector2(
-                    CurrentSpeed.x + moveSpeed * dy * Mathf.Cos(ShipRb2d.transform.rotation.eulerAngles.z * Mathf.Deg2Rad),
-                    CurrentSpeed.y + moveSpeed * dy * Mathf.Sin(ShipRb2d.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)
-                );
+            CurrentSpeed = new Vector2(
+                CurrentSpeed.x + moveSpeed * dy * Mathf.Cos(ShipRb2d.transform.rotation.eulerAngles.z * Mathf.Deg2Rad),
+                CurrentSpeed.y + moveSpeed * dy * Mathf.Sin(ShipRb2d.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)
+            );
+
+            //display thrusters
+            ShowThrust(dy>0);
+        }
+        else
+        {
+            ShowThrust(false);
         }//dy
 
         //Ship movement
@@ -87,6 +114,13 @@ public class PlayerShip : MonoBehaviour
             gm.NextMission();
         }
     }//OnTrigger
+
+    private void ShowThrust(bool on)
+    {
+        //for each engine block, show thrusters yea or nay
+        foreach(BloxE e in EngineBlox)
+                e.ShowThrust(on);
+    }//F
 
 }//class
 
