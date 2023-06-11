@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("navitarget " + go);
     }//F
 
-    private void CheckItemSensors()
+    public void CheckItemSensors()
     {
         //called when items are added to the scene, to see if we should have item sensors active
         GameObject[] anyItems = GameObject.FindGameObjectsWithTag("Item");

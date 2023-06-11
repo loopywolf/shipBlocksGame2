@@ -73,4 +73,10 @@ public class SimpleCamera : MonoBehaviour
         this.zoomFactor = zoomFactor;
     }
 
+    public void CheckSensors()
+    {
+        gm.CheckItemSensors();
+        //throw new NotImplementedException();
+    }
+
 }//class
