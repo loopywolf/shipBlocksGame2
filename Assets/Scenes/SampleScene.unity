@@ -23015,6 +23015,7 @@ GameObject:
   - component: {fileID: 1350722380}
   - component: {fileID: 1350722379}
   - component: {fileID: 1350722378}
+  - component: {fileID: 1350722381}
   m_Layer: 0
   m_Name: asteroid0
   m_TagString: Untagged
@@ -23103,6 +23104,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1350722381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350722377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1d5fa4d319f4f4eb058cecabe05e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  deathEffect: {fileID: 7983373511166380058, guid: 91d951786bcd70d4eaf778ae7a5cdd98,
+    type: 3}
 --- !u!1 &1362075088
 GameObject:
   m_ObjectHideFlags: 0
@@ -24329,7 +24345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416154926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9300003, y: -0.13000011, z: 0}
+  m_LocalPosition: {x: 2.342, y: -0.13000011, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1983487871}
@@ -26030,6 +26046,9 @@ MonoBehaviour:
   goMyShip: {fileID: 1376666999}
   NavigationUiObject: {fileID: 299224855}
   SensorUiObject: {fileID: 1222802871}
+  premadeShips:
+  - {fileID: 1376666999}
+  - {fileID: 1983487866}
 --- !u!4 &1688994488
 Transform:
   m_ObjectHideFlags: 0
@@ -28044,7 +28063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b5ee85042b51549b98f003f2c5662a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1416154927}
   BulletPrefab: {fileID: 6762747487148118489, guid: 1665cb4c0cab3b549bde5bc667cb95b7,
     type: 3}
   eventSystem: {fileID: 2077653791}

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     //internal Transform navigationTarget = null;
     private WinkUI navWinkUI;
     [SerializeField] GameObject SensorUiObject;
+    [SerializeField] GameObject[] premadeShips;
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
         //NavigationUiObject.GetComponent<NavigationUI>().setPlayerShip(myShip);
 
         ResetShips();
-        EnableShip("YourShip");
+        EnableShip(0);//YourShip
         SetupMission();
         DisplayMissionUi();
         //debug
@@ -74,18 +75,18 @@ public class GameManager : MonoBehaviour
 
     internal void SetupMission()
     {
+        Debug.Log("SetupMission:");
         switch(currentMission){
             case 0: //mission1: fly ship to planetVerda
+                EnableShip(0);//"YourShip"
                 myShip.lookingFor = "planetVerda";
                 myShip.missionCompleteAt = "STARBASE";
                 //Debug.Log("Ship looking for = " + myShip.lookingFor);
-                EnableShip("YourShip");
                 break;
             case 1: //mission 2: mining ship
+                EnableShip(1);// "Ship2-MiningRig");
                 myShip.lookingFor = "asteroid0";
                 myShip.missionCompleteAt = "STARBASE";
-
-                EnableShip("Ship2-MiningRig");
                 break;
         }
 
@@ -135,6 +136,7 @@ public class GameManager : MonoBehaviour
     {
         if (t == "") return;
 
+        Debug.Log("SetNavTarget:" + t);
         GameObject go = GameObject.Find(t);
         if (go == null) Debug.Log(t + " was not found!");
         NavigationUiObject.GetComponent<NavigationUI>().SetTarget(go.transform);
@@ -196,26 +198,31 @@ public class GameManager : MonoBehaviour
     {
         //find all ships and reset them
         GameObject[] ships = GameObject.FindGameObjectsWithTag("Player");
-        foreach(GameObject go in ships)
-        {
+        foreach (GameObject go in ships)
+            go.SetActive(false);
+/*        {
             PlayerShip ps = go.GetComponent<PlayerShip>();
             ps.enabled = false;
-        }
+        } */
         //throw new NotImplementedException();
     }
 
-    private void EnableShip(string shipName)
+    private void EnableShip(int index)
     {
-        Debug.Log("enable ship=" + shipName);
+        Debug.Log("enable ship=" + index);
         //attack camera to ship
         SmoothFollow sf = Camera.main.GetComponent<SmoothFollow>();
         if (sf == null) return;
 
-        GameObject nextShip = GameObject.Find(shipName); // "Ship2-MiningRig");
+        if(myShip!=null)
+            myShip.gameObject.SetActive(false);
+        GameObject nextShip = premadeShips[index];// GameObject.Find(shipName); // "Ship2-MiningRig");
         if (nextShip == null) return;
 
         Debug.Log("found " + nextShip);
 
+        nextShip.SetActive(true);
+        //TODO take away the stuff below
         sf.target = nextShip.transform;
         if (myShip != null)
         {

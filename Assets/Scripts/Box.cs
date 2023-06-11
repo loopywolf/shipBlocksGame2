@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    //the basic box, which can take damage.
     public int health = 100;
     public GameObject deathEffect;
 

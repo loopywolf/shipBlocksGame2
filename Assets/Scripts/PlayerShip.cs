@@ -39,8 +39,7 @@ public class PlayerShip : MonoBehaviour
             if (be != null)
                 EngineBlox.Add(be);
         }
-        Debug.Log(gameObject.name+ "..EngineBlox=" + EngineBlox);
-        Debug.Log(EngineBlox.Count);
+        Debug.Log(gameObject.name+ "..EngineBlox=" + EngineBlox + EngineBlox.Count);
     }//Start
 
     // Update is called once per frame
