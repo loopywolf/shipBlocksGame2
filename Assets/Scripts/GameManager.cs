@@ -90,7 +90,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        setNavTarget(myShip.lookingFor);
+        setNavTarget(myShip,myShip.lookingFor);
+        CheckItemSensors();
         //throw new NotImplementedException();
     }
 
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
     internal void CompleteMission()
     {
         missionCompleteObject.SetActive(true);  //shows "Mission Complete"
-        setNavTarget(myShip.missionCompleteAt);
+        setNavTarget(myShip,myShip.missionCompleteAt);
         navWinkUI.WinkAgain();
         //throw new NotImplementedException();
     }
@@ -132,14 +133,18 @@ public class GameManager : MonoBehaviour
         //throw new NotImplementedException();
     }
 
-    private void setNavTarget(String t)
+    private void setNavTarget(PlayerShip ship, String t)
     {
         if (t == "") return;
 
         Debug.Log("SetNavTarget:" + t);
         GameObject go = GameObject.Find(t);
         if (go == null) Debug.Log(t + " was not found!");
-        NavigationUiObject.GetComponent<NavigationUI>().SetTarget(go.transform);
+        NavigationUI nu = NavigationUiObject.GetComponent<NavigationUI>();
+        if (nu != null) {
+            nu.SetTarget(go.transform);
+            nu.SetShip(ship.gameObject);
+        }
         Debug.Log("navitarget " + go);
     }//F
 
@@ -178,7 +183,10 @@ public class GameManager : MonoBehaviour
                     //child is your child transform
                     //child.gameObject.SetActive(true);
                     NavigationUI nu = child.GetComponent<NavigationUI>();
+                    Debug.Log("Sensor nu=" + nu);
                     nu.SetTarget(nearest.transform);
+                    //nu.playerShip = myShip.gameObject;
+                    //Debug.Log(" nu=" + nu + " nu playership=" + nu.playerShip);
                     //nu.gameObject.SetActive(true);
                     //SensorUiObject.SetActive(true);
                 }//for
@@ -230,8 +238,20 @@ public class GameManager : MonoBehaviour
             Debug.Log("disabled " + myShip.gameObject);
         }
         myShip = nextShip.GetComponent<PlayerShip>();
+
         myShip.enabled = true;
         //throw new NotImplementedException();
+
+        //Sensors must be updated to new ship
+        foreach (Transform child in SensorUiObject.transform)
+        {
+            NavigationUI sucnu = child.gameObject.GetComponent<NavigationUI>();
+            if (sucnu != null)
+            {
+                sucnu.playerShip = myShip.gameObject;
+            }//if
+        }//for
+
         Debug.Log("enabled " + myShip.gameObject);
     }//F
 

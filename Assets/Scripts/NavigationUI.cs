@@ -6,7 +6,7 @@ using UnityEngine;
 public class NavigationUI : MonoBehaviour
 {
     Transform target = null;
-    [SerializeField] GameObject playerShip;
+    internal GameObject playerShip;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,8 @@ public class NavigationUI : MonoBehaviour
     {
         if (target == null) return; //can't do nothing
 
+        Debug.Log("NUI "+gameObject+" target is " + target.gameObject);
+        Debug.Log("NUI PlayerShip " + playerShip);
         //find angle to target
         float course = Mathf.Atan2(
             target.position.y - playerShip.transform.position.y,
@@ -38,4 +40,9 @@ public class NavigationUI : MonoBehaviour
         //this this.gameObject.SetActive(true);
     }
 
+    internal void SetShip(GameObject ship)
+    {
+        playerShip = ship;
+        //throw new NotImplementedException();
+    }
 }//class
